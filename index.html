@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vary: 3D Drifting Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; outline: none !important; box-sizing: border-box; }
+    html, body, #root { width: 100%; height: 100%; overflow: hidden; background: #000; }
+    canvas { display: block; outline: none !important; }
+    #canvas { position: absolute; top: 0; left: 0; }
+    #crash-vignette {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 99; opacity: 0;
+      background: radial-gradient(ellipse at center, transparent 45%, rgba(255,20,80,0.0) 55%, rgba(255,0,90,0.6) 100%);
+      mix-blend-mode: screen;
+      transition: opacity 0.05s;
+    }
+    #chromatic-left, #chromatic-right {
+      position: fixed; top: 0; width: 15%; height: 100%;
+      pointer-events: none; z-index: 99; opacity: 0;
+      transition: opacity 0.05s;
+    }
+    #chromatic-left {
+      left: 0;
+      background: linear-gradient(to right, rgba(255,0,110,0.35), transparent);
+    }
+    #chromatic-right {
+      right: 0;
+      background: linear-gradient(to left, rgba(0,180,255,0.3), transparent);
+    }
+    #points-vignette {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 98; opacity: 0;
+      background: radial-gradient(ellipse at center, transparent 45%, rgba(46,230,255,0.0) 55%, rgba(46,230,255,0.5) 100%);
+      mix-blend-mode: screen;
+      transition: opacity 0.08s;
+    }
+    #points-chromatic-left, #points-chromatic-right {
+      position: fixed; top: 0; width: 12%; height: 100%;
+      pointer-events: none; z-index: 98; opacity: 0;
+      transition: opacity 0.08s;
+    }
+    #points-chromatic-left {
+      left: 0;
+      background: linear-gradient(to right, rgba(46,230,255,0.3), transparent);
+    }
+    #points-chromatic-right {
+      right: 0;
+      background: linear-gradient(to left, rgba(160,90,255,0.25), transparent);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="crash-vignette"></div>
+  <div id="chromatic-left"></div>
+  <div id="chromatic-right"></div>
+  <div id="points-vignette"></div>
+  <div id="points-chromatic-left"></div>
+  <div id="points-chromatic-right"></div>
+  <script type="module" src="/scene.js"></script>
+</body>
+</html>
