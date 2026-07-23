@@ -17,7 +17,7 @@ export function initAudio() {
   engineOsc.frequency.value = 50;
   
   engineGain = ctx.createGain();
-  engineGain.gain.value = 0;
+  engineGain.gain.value = 0.05;
   
   // Lowpass filter for engine to muffle it
   const engineFilter = ctx.createBiquadFilter();
@@ -52,6 +52,7 @@ export function initAudio() {
 
 export function updateAudio(speed, maxSpeed, isDrifting) {
   if (!audioInitialized || !ctx) return;
+  if (ctx.state === 'suspended') ctx.resume();
   
   // Engine sound mapping (base idle 50Hz, max speed 180Hz)
   const speedRatio = Math.max(0, Math.min(1, speed / maxSpeed));
@@ -73,6 +74,7 @@ export function updateAudio(speed, maxSpeed, isDrifting) {
 
 export function playCoin() {
   if (!audioInitialized || !ctx) return;
+  if (ctx.state === 'suspended') ctx.resume();
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
   osc.type = 'sine';
@@ -91,6 +93,7 @@ export function playCoin() {
 
 export function playCrash(intensity = 1) {
   if (!audioInitialized || !ctx) return;
+  if (ctx.state === 'suspended') ctx.resume();
   // White noise crash
   const bufferSize = ctx.sampleRate * 0.3; 
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
@@ -118,6 +121,7 @@ export function playCrash(intensity = 1) {
 
 export function playBoost() {
   if (!audioInitialized || !ctx) return;
+  if (ctx.state === 'suspended') ctx.resume();
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
   osc.type = 'square';

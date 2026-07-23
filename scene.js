@@ -1106,6 +1106,7 @@ function buildLevelSelect() {
       btn.style.boxShadow = '0 5px 0 rgba(0,0,0,0.3)';
     });
     btn.addEventListener('click', () => {
+      initAudio();
       const lvl = parseInt(btn.dataset.level);
       startLevel(lvl);
     });
